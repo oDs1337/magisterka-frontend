@@ -64,3 +64,14 @@ pre {
   overflow-wrap: break-word;
   word-break: break-word;
 }
+
+.upload-area {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  input[type="file"] {
+    color: white;
+  }
+}
+

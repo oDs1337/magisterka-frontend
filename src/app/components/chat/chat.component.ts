@@ -31,6 +31,7 @@ import { NgClass } from '@angular/common';
 export class ChatComponent {
   prompt: string = '';
   messages: { text: string; sender: 'user' | 'bot' }[] = [];
+  selectedFile: File | null = null;
 
   constructor(private api: ApiService) {}
 
@@ -54,4 +55,23 @@ export class ChatComponent {
 
     this.prompt = '';
   }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+    }
+  }
+
+  uploadFile(): void {
+    if (!this.selectedFile) return;
+
+    this.api.uploadDocument(this.selectedFile).subscribe({
+      next: () => alert('Plik został przesłany i zaindeksowany pomyślnie.'),
+      error: () => alert('Wystąpił błąd przy przesyłaniu pliku.')
+    });
+
+    this.selectedFile = null;
+  }
+
 }

@@ -4,6 +4,14 @@
       <mat-card-title><span style="color: white">Okno chatu:</span></mat-card-title>
     </mat-card-header>
 
+    <mat-card-actions class="upload-area">
+      <input type="file" (change)="onFileSelected($event)" />
+      <button mat-stroked-button color="accent" (click)="uploadFile()" [disabled]="!selectedFile">
+        <mat-icon>cloud_upload</mat-icon> Wyślij dokument
+      </button>
+    </mat-card-actions>
+
+
     <mat-card-content class="messages">
       <mat-card
         class="message"

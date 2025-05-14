@@ -13,4 +13,12 @@ export class ApiService {
   sendPrompt(prompt: string): Observable<IPrompt>{
     return this.http.post<IPrompt>(`${environment.apiUrl}/ask`, { prompt });
   }
+
+  uploadDocument(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.http.post(`${environment.apiUrl}/upload`, formData);
+  }
+
 }
